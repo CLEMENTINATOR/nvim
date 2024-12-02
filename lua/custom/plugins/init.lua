@@ -28,4 +28,22 @@ return {
             }
         end,
     },
+    {
+    'zbirenbaum/copilot.lua',
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        debounce = 75,
+        keymap = {
+          accept = '<m-y>',
+          accept_word = '<m-w>',
+          accept_line = '<m-l>',
+          next = '<m-]>',
+          prev = '<m-[>',
+          dismiss = '<m-d>',
+        },
+      },
+    },
+  },
 }
