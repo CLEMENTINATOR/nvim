@@ -81,4 +81,12 @@ return {
     end,
   },
   { 'nvim-treesitter/nvim-treesitter-context', dependencies = { 'nvim-treesitter/nvim-treesitter' }, opts = { max_lines = 8 } },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-tree/nvim-web-devicons"
+    }
+  }
 }
