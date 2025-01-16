@@ -96,4 +96,7 @@ return {
         options = { theme = 'gruvbox' }
     }
   },
+  {
+    'sindrets/diffview.nvim'
+  },
 }
