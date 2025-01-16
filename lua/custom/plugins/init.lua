@@ -57,5 +57,8 @@ return {
         opts = {
             options = { theme = 'gruvbox' }
         }
-    }
+    },
+    {
+        'sindrets/diffview.nvim'
+    },
 }
