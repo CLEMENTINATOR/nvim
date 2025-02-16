@@ -874,7 +874,6 @@ require('lazy').setup({
 
       require("mini.files").setup()
       require("mini.pairs").setup()
-      require("mini.sessions").setup()
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
