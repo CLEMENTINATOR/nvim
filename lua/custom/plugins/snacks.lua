@@ -125,6 +125,13 @@ return {
         desc = 'Find Git Files',
       },
       {
+        '<leader>fa',
+        function()
+          Snacks.picker.files({ignored=true, hidden=true})
+        end,
+        desc = 'Find All Files',
+      },
+      {
         '<leader>fp',
         function()
           Snacks.picker.projects()
