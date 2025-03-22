@@ -3,47 +3,47 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-    {
-        'olimorris/persisted.nvim',
-        config = function()
-            require('persisted').setup {
-                use_git_branch = true, -- create session files based on the branch of the git enabled repository
-                autosave = true,       -- automatically save session files when exiting Neovim
-                autoload = true,       -- automatically load the session for the cwd on Neovim startup
-                on_autoload_no_session = function()
-                    vim.notify 'No existing session to load.'
-                end,
-            }
+  {
+    'olimorris/persisted.nvim',
+    config = function()
+      require('persisted').setup {
+        use_git_branch = true, -- create session files based on the branch of the git enabled repository
+        autosave = true, -- automatically save session files when exiting Neovim
+        autoload = true, -- automatically load the session for the cwd on Neovim startup
+        on_autoload_no_session = function()
+          vim.notify 'No existing session to load.'
         end,
-    },
-    {
-      'github/copilot.vim',
-      lazy = false,
-      init = function()
-          vim.keymap.set('i', '<M-w>', '<Plug>(copilot-accept-word)', { desc = 'Accept copilot word' })
-          vim.keymap.set('i', '<M-l>', '<Plug>(copilot-accept-line)', { desc = 'Accept copilot line' })
-          vim.keymap.set('n', '<leader>uc', function()
-              if vim.b.copilot_enabled == nil or vim.b.copilot_enabled then
-                  vim.b.copilot_enabled = false
-              else
-                  vim.b.copilot_enabled = true
-              end
-          end, { desc = 'Toggle Copilot' })
-      end,
+      }
+    end,
+  },
+  {
+    'github/copilot.vim',
+    lazy = false,
+    init = function()
+      vim.keymap.set('i', '<M-w>', '<Plug>(copilot-accept-word)', { desc = 'Accept copilot word' })
+      vim.keymap.set('i', '<M-l>', '<Plug>(copilot-accept-line)', { desc = 'Accept copilot line' })
+      vim.keymap.set('n', '<leader>uc', function()
+        if vim.b.copilot_enabled == nil or vim.b.copilot_enabled then
+          vim.b.copilot_enabled = false
+        else
+          vim.b.copilot_enabled = true
+        end
+      end, { desc = 'Toggle Copilot' })
+    end,
   },
   { 'nvim-treesitter/nvim-treesitter-context', dependencies = { 'nvim-treesitter/nvim-treesitter' }, opts = { max_lines = 8 } },
   {
-    "OXY2DEV/markview.nvim",
+    'OXY2DEV/markview.nvim',
     lazy = false,
     dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
-    }
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
   },
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    'nvim-treesitter/nvim-treesitter-textobjects',
     dependencies = {
-        "nvim-treesitter/nvim-treesitter"
+      'nvim-treesitter/nvim-treesitter',
     },
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -52,13 +52,13 @@ return {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-              ["]m"] = "@function.outer",
+              [']m'] = '@function.outer',
             },
             goto_previous_start = {
-              ["[m"] = "@function.outer",
+              ['[m'] = '@function.outer',
             },
-          }
-        }
+          },
+        },
       }
     end,
   },
@@ -66,11 +66,11 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
-        options = { theme = 'gruvbox' }
-    }
+      options = { theme = 'gruvbox' },
+    },
   },
   {
-    'sindrets/diffview.nvim'
+    'sindrets/diffview.nvim',
   },
   {
     'nvim-lualine/lualine.nvim',
