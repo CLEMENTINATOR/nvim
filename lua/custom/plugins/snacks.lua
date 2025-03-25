@@ -472,7 +472,7 @@ return {
         function()
           Snacks.bufdelete.other()
         end,
-        desc = 'Delete Buffer',
+        desc = 'Delete Other Buffers',
       },
       {
         '<leader>cR',
