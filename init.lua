@@ -321,8 +321,17 @@ require('lazy').setup({
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      require('lspconfig').clangd.setup {}
-      require('lspconfig').rust_analyzer.setup {
+      vim.lsp.config.clangd = {
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+      }
+      vim.lsp.enable 'clangd'
+      vim.lsp.enable 'lua_ls'
+      vim.lsp.enable 'gopls'
+      vim.lsp.enable 'pyright'
+      vim.lsp.enable 'ts_ls'
+      -- vim.lsp.enable 'copilot'
+
+      vim.lsp.config('rust_analyzer', {
         settings = {
           ['rust-analyzer'] = {
             check = {
@@ -330,11 +339,8 @@ require('lazy').setup({
             },
           },
         },
-      }
-      require('lspconfig').lua_ls.setup {}
-      require('lspconfig').gopls.setup {}
-      require('lspconfig').pyright.setup {}
-      require('lspconfig').ts_ls.setup {}
+      })
+      vim.lsp.enable 'rust_analyzer'
     end,
   },
 
