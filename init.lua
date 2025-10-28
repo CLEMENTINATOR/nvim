@@ -327,6 +327,9 @@ require('lazy').setup({
       vim.lsp.enable 'clangd'
       vim.lsp.enable 'lua_ls'
       vim.lsp.enable 'gopls'
+      vim.lsp.config.pyright = {
+        cmd = { 'uv', 'run', 'pyright-langserver', '--stdio' },
+      }
       vim.lsp.enable 'pyright'
       vim.lsp.enable 'ts_ls'
       -- vim.lsp.enable 'copilot'
