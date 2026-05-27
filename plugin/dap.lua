@@ -1,0 +1,6 @@
+-- vim.pack.add({
+--   'https://github.com/nvim-neotest/nvim-nio',
+--   'https://github.com/rcarriga/nvim-dap-ui',
+--   'https://github.com/theHamsta/nvim-dap-virtual-text',
+--   'https://github.com/mfussenegger/nvim-dap',
+-- })

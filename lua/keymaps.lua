@@ -1,0 +1,75 @@
+local utils = require('utils')
+
+vim.opt.hlsearch = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.jump({ count = -1, wrap = false })
+end, { desc = 'Go to previous [D]iagnostic message' })
+
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.jump({ count = 1, wrap = false })
+end, { desc = 'Go to next [D]iagnostic message' })
+
+vim.keymap.set('n', '<leader>D', function()
+  vim.diagnostic.open_float()
+end, { desc = 'Jump to [D]iagnostic window' })
+
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '-', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0)); MiniFiles.reveal_cwd()<CR>', { desc = 'Open MiniFiles' })
+
+vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+
+vim.keymap.set('n', '<leader>un', utils.toggle_relative_number, { desc = 'Toggle relative line number' })
+vim.keymap.set('n', '<leader>uu', require('diagnostics').toggle_diagnostic_underline, { desc = 'Toggle underlines' })
+vim.keymap.set('n', '<leader>uv', require('diagnostics').toggle_diagnostic_virtual_lines, { desc = 'Toggle virtual lines' })
+vim.keymap.set('n', '<leader>um', function()
+  utils.toggle_option('modifiable')
+end, { desc = 'Toggle modifiable' })
+
+vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
+vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
+
+vim.keymap.set('n', '<leader>bo', utils.close_windowless_buffers, { desc = 'Delete all buffers not in a window' })
+vim.keymap.set('n', '<leader>bO', '<cmd>%bd!|e#|bd!#<cr>', { desc = 'Delete all buffers except current' })
+
+vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last tab' })
+vim.keymap.set('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First tab' })
+vim.keymap.set('n', '<leader><tab><tab>', '<cmd>tab split<cr>', { desc = 'New tab' })
+vim.keymap.set('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close tab' })
+vim.keymap.set('n', '<C-c>', '<cmd>tabclose<cr>', { desc = 'Close tab' })
+vim.keymap.set('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'Close other tabs' })
+vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
+
+vim.keymap.set('n', '<leader>msd', require('session').delete_all, { desc = 'Delete all sessions' })
+
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { silent = true })
+
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
+
+vim.keymap.set('n', '<leader>dt', '<CMD>diffthis<CR>', { desc = 'Diff this' })
+vim.keymap.set({ 'n', 'v' }, '<leader>dg', '<CMD>diffget<CR>', { desc = 'Diff get' })
+vim.keymap.set({ 'n', 'v' }, '<leader>dp', '<CMD>diffput<CR>', { desc = 'Diff put' })
+
+vim.keymap.set('n', '<leader>yp', function()
+  local path = vim.fn.expand('%:.')
+  vim.fn.setreg('+', path)
+  print('Copied path: ' .. path)
+end, { desc = 'Copy file path to clipboard' })
+
+vim.keymap.set('n', '<leader>yP', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  print('Copied path: ' .. path)
+end, { desc = 'Copy absolute file path to clipboard' })
+
+vim.api.nvim_set_keymap('n', 'qq', '<Nop>', { noremap = true, silent = true })
