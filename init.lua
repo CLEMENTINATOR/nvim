@@ -12,7 +12,6 @@ require 'session'
 require 'diagnostics'
 
 vim.g.gruvbox_material_transparent_background = 1
-vim.g.copilot_node_command = vim.fn.trim(vim.fn.system 'fnm exec --using=22 which node')
 
 vim.api.nvim_create_user_command('PackClean', function()
   local orphans = vim
