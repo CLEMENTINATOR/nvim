@@ -1,12 +1,12 @@
-vim.pack.add({
+vim.pack.add {
   'https://github.com/echasnovski/mini.nvim',
-})
+}
 
-local session = require('session')
+local session = require 'session'
 
-require('mini.ai').setup({ n_lines = 500 })
+require('mini.ai').setup { n_lines = 500 }
 
-require('mini.files').setup({
+require('mini.files').setup {
   mappings = {
     close = 'q',
     go_in = '<C-L>',
@@ -25,7 +25,7 @@ require('mini.files').setup({
   options = {
     use_as_default_explorer = false,
   },
-})
+}
 
 require('mini.bufremove').setup()
 vim.keymap.set('n', '<leader>bd', function()
@@ -47,18 +47,18 @@ vim.keymap.set('n', '<leader>bD', function()
   MiniBufremove.delete(0, true)
 end, { desc = 'Delete Buffer (force)' })
 
-require('mini.sessions').setup({
+require('mini.sessions').setup {
   autoread = true,
   autowrite = true,
   file = 'Session.vim',
   verbose = { read = false, write = false, delete = true },
   hooks = { pre = { write = session.close_ephemeral_buffers } },
-})
+}
 
-require('mini.indentscope').setup({
+require('mini.indentscope').setup {
   symbol = '╎',
   options = { try_as_border = true },
-})
+}
 
 vim.api.nvim_create_autocmd('TermOpen', {
   callback = function(args)
@@ -66,8 +66,8 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
-local miniclue = require('mini.clue')
-require('mini.clue').setup({
+local miniclue = require 'mini.clue'
+require('mini.clue').setup {
   triggers = {
     { mode = { 'n', 'x' }, keys = '<Leader>' },
     { mode = 'n', keys = '[' },
@@ -91,11 +91,11 @@ require('mini.clue').setup({
     miniclue.gen_clues.windows(),
     miniclue.gen_clues.z(),
   },
-})
+}
 
-require('mini.notify').setup({
+require('mini.notify').setup {
   lsp_progress = { enable = false },
-})
+}
 vim.keymap.set('n', '<leader>uN', function()
   MiniNotify.show_history()
 end, { desc = 'Show notification history' })

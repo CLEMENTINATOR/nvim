@@ -1,14 +1,14 @@
-local utils = require('utils')
+local utils = require 'utils'
 
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('n', '[d', function()
-  vim.diagnostic.jump({ count = -1, wrap = false })
+  vim.diagnostic.jump { count = -1, wrap = false }
 end, { desc = 'Go to previous [D]iagnostic message' })
 
 vim.keymap.set('n', ']d', function()
-  vim.diagnostic.jump({ count = 1, wrap = false })
+  vim.diagnostic.jump { count = 1, wrap = false }
 end, { desc = 'Go to next [D]iagnostic message' })
 
 vim.keymap.set('n', '<leader>D', function()
@@ -30,7 +30,7 @@ vim.keymap.set('n', '<leader>un', utils.toggle_relative_number, { desc = 'Toggle
 vim.keymap.set('n', '<leader>uu', require('diagnostics').toggle_diagnostic_underline, { desc = 'Toggle underlines' })
 vim.keymap.set('n', '<leader>uv', require('diagnostics').toggle_diagnostic_virtual_lines, { desc = 'Toggle virtual lines' })
 vim.keymap.set('n', '<leader>um', function()
-  utils.toggle_option('modifiable')
+  utils.toggle_option 'modifiable'
 end, { desc = 'Toggle modifiable' })
 
 vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
@@ -61,13 +61,13 @@ vim.keymap.set({ 'n', 'v' }, '<leader>dg', '<CMD>diffget<CR>', { desc = 'Diff ge
 vim.keymap.set({ 'n', 'v' }, '<leader>dp', '<CMD>diffput<CR>', { desc = 'Diff put' })
 
 vim.keymap.set('n', '<leader>yp', function()
-  local path = vim.fn.expand('%:.')
+  local path = vim.fn.expand '%:.'
   vim.fn.setreg('+', path)
   print('Copied path: ' .. path)
 end, { desc = 'Copy file path to clipboard' })
 
 vim.keymap.set('n', '<leader>yP', function()
-  local path = vim.fn.expand('%:p')
+  local path = vim.fn.expand '%:p'
   vim.fn.setreg('+', path)
   print('Copied path: ' .. path)
 end, { desc = 'Copy absolute file path to clipboard' })

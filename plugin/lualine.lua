@@ -1,8 +1,8 @@
-vim.pack.add({
+vim.pack.add {
   'https://github.com/nvim-lualine/lualine.nvim',
-})
+}
 
-require('lualine').setup({
+require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
@@ -58,4 +58,4 @@ require('lualine').setup({
   winbar = {},
   inactive_winbar = {},
   extensions = {},
-})
+}

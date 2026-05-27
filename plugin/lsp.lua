@@ -1,14 +1,14 @@
-vim.pack.add({
+vim.pack.add {
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/folke/lazydev.nvim',
-})
+}
 
-require('lazydev').setup({
+require('lazydev').setup {
   library = {
     { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
     { path = '~/nvim' },
   },
-})
+}
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
     map('<C-w>]', function()
-      vim.cmd('vsplit')
+      vim.cmd 'vsplit'
       local key = vim.api.nvim_replace_termcodes('<C-]>', true, true, true)
       vim.api.nvim_feedkeys(key, 'n', true)
     end, 'Goto Definition in vsplit')
@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
         callback = function(event2)
           vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = event2.buf })
+          vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
         end,
       })
     end
@@ -66,20 +66,20 @@ vim.lsp.config.lua_ls = {
     },
   },
 }
-vim.lsp.enable('lua_ls')
+vim.lsp.enable 'lua_ls'
 
-vim.lsp.enable('ts_ls')
-vim.lsp.enable('gopls')
+vim.lsp.enable 'ts_ls'
+vim.lsp.enable 'gopls'
 
 vim.lsp.config.clangd = {
   filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
 }
-vim.lsp.enable('clangd')
+vim.lsp.enable 'clangd'
 
 vim.lsp.config.pyright = {
   cmd = { 'uv', 'run', 'pyright-langserver', '--stdio' },
 }
-vim.lsp.enable('pyright')
+vim.lsp.enable 'pyright'
 
 -- Auto-stop idle LSP clients to free memory, restart them on activity.
 do
@@ -103,16 +103,20 @@ do
       if not stop_timer then
         return
       end
-      stop_timer:start(STOP_TIMEOUT_MS, 0, vim.schedule_wrap(function()
-        shutting_down = true
-        for _, lsp in ipairs(vim.lsp.get_clients()) do
-          stopped[lsp.name] = true
-          lsp:stop(true)
-        end
-        shutting_down = false
-        clear_timer(stop_timer)
-        stop_timer = nil
-      end))
+      stop_timer:start(
+        STOP_TIMEOUT_MS,
+        0,
+        vim.schedule_wrap(function()
+          shutting_down = true
+          for _, lsp in ipairs(vim.lsp.get_clients()) do
+            stopped[lsp.name] = true
+            lsp:stop(true)
+          end
+          shutting_down = false
+          clear_timer(stop_timer)
+          stop_timer = nil
+        end)
+      )
     end,
   })
 

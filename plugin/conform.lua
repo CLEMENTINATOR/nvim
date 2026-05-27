@@ -1,8 +1,8 @@
-vim.pack.add({
+vim.pack.add {
   'https://github.com/stevearc/conform.nvim',
-})
+}
 
-require('conform').setup({
+require('conform').setup {
   notify_on_error = true,
   format_on_save = true,
   default_format_opts = {
@@ -20,8 +20,8 @@ require('conform').setup({
     mdx = { 'prettier', timeout_ms = 2000 },
     toml = { 'taplo' },
   },
-})
+}
 
 vim.keymap.set('', '<leader>f', function()
-  require('conform').format({ async = true, lsp_format = 'fallback' })
+  require('conform').format { async = true, lsp_format = 'fallback' }
 end, { desc = '[F]ormat buffer' })

@@ -10,23 +10,23 @@ vim.opt.clipboard = 'unnamedplus'
 -- Use OSC52 as clipboard provider when SSHed (copies to local clipboard).
 -- When running nested inside another nvim's :terminal, the parent doesn't
 -- forward OSC52 responses, so paste would hang for 10s before timing out.
-if os.getenv('SSH_TTY') then
-  local osc52 = require('vim.ui.clipboard.osc52')
+if os.getenv 'SSH_TTY' then
+  local osc52 = require 'vim.ui.clipboard.osc52'
   local register_paste = function()
-    return vim.split(vim.fn.getreg(''), '\n')
+    return vim.split(vim.fn.getreg '', '\n')
   end
   local paste = require('utils').is_nested_nvim() and {
     ['+'] = register_paste,
     ['*'] = register_paste,
   } or {
-    ['+'] = osc52.paste('+'),
-    ['*'] = osc52.paste('*'),
+    ['+'] = osc52.paste '+',
+    ['*'] = osc52.paste '*',
   }
   vim.g.clipboard = {
     name = 'OSC 52',
     copy = {
-      ['+'] = osc52.copy('+'),
-      ['*'] = osc52.copy('*'),
+      ['+'] = osc52.copy '+',
+      ['*'] = osc52.copy '*',
     },
     paste = paste,
   }
@@ -42,7 +42,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '╎ ', trail = '·', nbsp = '␣' }
-vim.opt.iskeyword:append('-')
+vim.opt.iskeyword:append '-'
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10

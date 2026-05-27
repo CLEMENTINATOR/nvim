@@ -1,15 +1,15 @@
-vim.pack.add({
+vim.pack.add {
   'https://github.com/github/copilot.vim',
   'https://github.com/folke/sidekick.nvim',
-})
+}
 
 local toggle_copilot = function()
   if vim.b.copilot_enabled == nil or vim.b.copilot_enabled then
     vim.b.copilot_enabled = false
-    vim.print('Copilot disabled')
+    vim.print 'Copilot disabled'
   else
     vim.b.copilot_enabled = true
-    vim.print('Copilot enabled')
+    vim.print 'Copilot enabled'
   end
 end
 
@@ -18,7 +18,7 @@ vim.keymap.set('i', '<M-l>', '<Plug>(copilot-accept-line)', { desc = 'Accept cop
 vim.keymap.set('n', '<leader>uC', toggle_copilot, { desc = 'Toggle Copilot' })
 vim.keymap.set('i', '<M-u>', toggle_copilot, { desc = 'Toggle Copilot' })
 
-require('sidekick').setup({
+require('sidekick').setup {
   copilot = {
     status = {
       enabled = false,
@@ -28,7 +28,7 @@ require('sidekick').setup({
     enabled = false,
     debounce = 100,
   },
-})
+}
 
 -- Make Shift+Enter send the correct sequence in neovim terminal buffers (for Claude Code)
 vim.keymap.set('t', '<S-Enter>', function()
@@ -45,11 +45,11 @@ vim.keymap.set({ 'n', 'i' }, '<tab>', function()
 end, { expr = true, desc = 'Goto/Apply Next Edit Suggestion' })
 
 vim.keymap.set({ 'n', 't', 'i', 'x' }, '<c-.>', function()
-  require('sidekick.cli').toggle({ name = 'claude', focus = true })
+  require('sidekick.cli').toggle { name = 'claude', focus = true }
 end, { desc = 'Sidekick Toggle' })
 
 vim.keymap.set('n', '<leader>aa', function()
-  require('sidekick.cli').toggle({ name = 'claude', focus = true })
+  require('sidekick.cli').toggle { name = 'claude', focus = true }
 end, { desc = 'Sidekick Toggle CLI' })
 
 vim.keymap.set('n', '<leader>as', function()
@@ -61,15 +61,15 @@ vim.keymap.set('n', '<leader>ad', function()
 end, { desc = 'Detach a CLI Session' })
 
 vim.keymap.set({ 'x', 'n' }, '<leader>at', function()
-  require('sidekick.cli').send({ msg = '{this}' })
+  require('sidekick.cli').send { msg = '{this}' }
 end, { desc = 'Send This' })
 
 vim.keymap.set('n', '<leader>af', function()
-  require('sidekick.cli').send({ msg = '{file}' })
+  require('sidekick.cli').send { msg = '{file}' }
 end, { desc = 'Send File' })
 
 vim.keymap.set('x', '<leader>av', function()
-  require('sidekick.cli').send({ msg = '{selection}' })
+  require('sidekick.cli').send { msg = '{selection}' }
 end, { desc = 'Send Visual Selection' })
 
 vim.keymap.set({ 'n', 'x' }, '<leader>ap', function()

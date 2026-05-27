@@ -1,13 +1,13 @@
-local log = require('utils.log')
+local log = require 'utils.log'
 
 local M = {}
 
 M.toggle_inlay_hints = function(bufnr)
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }), { bufnr })
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr }, { bufnr })
 end
 
 M.is_nested_nvim = function()
-  return os.getenv('NVIM') ~= nil
+  return os.getenv 'NVIM' ~= nil
 end
 
 M.toggle_relative_number = function()
@@ -26,7 +26,7 @@ M.toggle_diagnostics = function()
 end
 
 M.get_git_main_branch = function()
-  local buffer_dir = vim.fn.expand('%:p:h')
+  local buffer_dir = vim.fn.expand '%:p:h'
   local git_cmd = 'git -C ' .. vim.fn.shellescape(buffer_dir) .. " branch --list --format='%(refname:short)'"
   local branches = vim.fn.system(git_cmd)
 
@@ -34,7 +34,7 @@ M.get_git_main_branch = function()
     return nil
   end
 
-  for branch in branches:gmatch('[^\r\n]+') do
+  for branch in branches:gmatch '[^\r\n]+' do
     if branch == 'main' or branch == 'master' then
       return branch
     end
@@ -44,7 +44,7 @@ end
 M.get_git_root = function()
   local dot_git_path = vim.fn.finddir('.git', '.;')
   if dot_git_path == '' then
-    return vim.fn.expand('~')
+    return vim.fn.expand '~'
   end
   return vim.fn.fnamemodify(dot_git_path, ':h')
 end
@@ -72,7 +72,7 @@ M.close_windowless_buffers = function()
         local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
         if choice == 1 then
           vim.api.nvim_buf_call(buf, function()
-            vim.cmd('write')
+            vim.cmd 'write'
           end)
           vim.api.nvim_buf_delete(buf, { force = true })
         elseif choice == 2 then
@@ -90,7 +90,7 @@ M.foldexpr = function()
     if vim.bo[buf].filetype == '' then
       return '0'
     end
-    if vim.bo[buf].filetype:find('dashboard') then
+    if vim.bo[buf].filetype:find 'dashboard' then
       vim.b[buf].ts_folds = false
     else
       vim.b[buf].ts_folds = pcall(vim.treesitter.get_parser, buf)

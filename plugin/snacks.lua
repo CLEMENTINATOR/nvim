@@ -1,19 +1,19 @@
-vim.pack.add({
+vim.pack.add {
   'https://github.com/folke/snacks.nvim',
-})
+}
 
-require('snacks').setup({
+require('snacks').setup {
   bigfile = {
     notify = true,
     size = 1.5 * 1024 * 1024,
     line_length = 1000,
     setup = function(ctx)
       local buf = ctx.buf
-      if vim.fn.exists(':NoMatchParen') ~= 0 then
-        vim.cmd([[NoMatchParen]])
+      if vim.fn.exists ':NoMatchParen' ~= 0 then
+        vim.cmd [[NoMatchParen]]
       end
       local opts = { buffer = buf, silent = true, remap = false }
-      for _, mode in ipairs({ 'n', 'x', 'o' }) do
+      for _, mode in ipairs { 'n', 'x', 'o' } do
         vim.keymap.set(mode, '%', '%', opts)
         vim.keymap.set(mode, 'g%', '%', opts)
       end
@@ -63,10 +63,10 @@ require('snacks').setup({
   styles = {
     notification = { wo = { wrap = true } },
   },
-})
+}
 
 vim.keymap.set('n', '<leader><space>', function()
-  Snacks.picker.smart({ filter = { cwd = true } })
+  Snacks.picker.smart { filter = { cwd = true } }
 end, { desc = 'Smart Find Files' })
 vim.keymap.set('n', '<leader>,', function()
   Snacks.picker.buffers()
@@ -89,7 +89,7 @@ vim.keymap.set('n', '<leader>fb', function()
   Snacks.picker.buffers()
 end, { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>fc', function()
-  Snacks.picker.files({ cwd = vim.fn.stdpath('config') })
+  Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
 end, { desc = 'Find Config File' })
 vim.keymap.set('n', '<leader>ff', function()
   Snacks.picker.files()
@@ -98,7 +98,7 @@ vim.keymap.set('n', '<leader>fg', function()
   Snacks.picker.git_files()
 end, { desc = 'Find Git Files' })
 vim.keymap.set('n', '<leader>fa', function()
-  Snacks.picker.files({ ignored = true, hidden = true })
+  Snacks.picker.files { ignored = true, hidden = true }
 end, { desc = 'Find All Files' })
 vim.keymap.set('n', '<leader>fp', function()
   Snacks.picker.projects()
@@ -254,15 +254,15 @@ vim.api.nvim_create_autocmd('User', {
     end
     vim.print = _G.dd
 
-    Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
-    Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>uw')
-    Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>uL')
-    Snacks.toggle.diagnostics():map('<leader>ud')
-    Snacks.toggle.line_number():map('<leader>ul')
-    Snacks.toggle.treesitter():map('<leader>uT')
-    Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map('<leader>ub')
-    Snacks.toggle.inlay_hints():map('<leader>uh')
-    Snacks.toggle.indent():map('<leader>ug')
-    Snacks.toggle.dim():map('<leader>uD')
+    Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>us'
+    Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>uw'
+    Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>uL'
+    Snacks.toggle.diagnostics():map '<leader>ud'
+    Snacks.toggle.line_number():map '<leader>ul'
+    Snacks.toggle.treesitter():map '<leader>uT'
+    Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>ub'
+    Snacks.toggle.inlay_hints():map '<leader>uh'
+    Snacks.toggle.indent():map '<leader>ug'
+    Snacks.toggle.dim():map '<leader>uD'
   end,
 })

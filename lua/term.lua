@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
   pattern = 'term://*',
   callback = function()
-    vim.cmd('startinsert')
+    vim.cmd 'startinsert'
   end,
 })
 
@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('BufLeave', {
     vim.schedule(function()
       local buf = vim.api.nvim_get_current_buf()
       if vim.bo[buf].buftype ~= 'terminal' then
-        vim.cmd('stopinsert')
+        vim.cmd 'stopinsert'
       end
     end)
   end,

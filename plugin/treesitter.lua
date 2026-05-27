@@ -1,8 +1,8 @@
-vim.pack.add({
+vim.pack.add {
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
   'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
-})
+}
 
 require('nvim-treesitter').setup()
 
@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.keymap.set('n', '<C-space>', function()
-  vim.cmd('normal! v')
+  vim.cmd 'normal! v'
   require('vim.treesitter._select').select_parent(1)
 end, { desc = 'Start treesitter incremental selection' })
 
@@ -38,13 +38,13 @@ end, { desc = 'Shrink treesitter selection to child node' })
 
 vim.treesitter.language.register('markdown', { 'mdx' })
 
-require('treesitter-context').setup({ max_lines = 8 })
+require('treesitter-context').setup { max_lines = 8 }
 
-require('nvim-treesitter-textobjects').setup({
+require('nvim-treesitter-textobjects').setup {
   move = {
     enable = true,
     set_jumps = true,
     goto_next_start = { [']m'] = '@function.outer' },
     goto_previous_start = { ['[m'] = '@function.outer' },
   },
-})
+}

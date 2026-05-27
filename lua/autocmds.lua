@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd('VimResized', {
   desc = 'Resize splits when resizing the window',
   group = vim.api.nvim_create_augroup('kickstart-resize-splits', { clear = true }),
   callback = function()
-    vim.cmd('wincmd =')
+    vim.cmd 'wincmd ='
   end,
 })
 
